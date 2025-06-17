@@ -56,10 +56,11 @@ Si lo necesitas cambiar:
 Al ingresar, verás un panel resumen con:
 - Total de pacientes registrados
 - Total de odontólogos
-- Cantidad de tratamientos disponibles
 - Turnos agendados
-- Planes de tratamiento activos
-Este panel brinda una visión general útil para el administrador.
+- Cantidad de tratamientos disponibles
+- Gráfico de tratamientos más aplicados
+- Últimos planes creados
+Este panel brinda una visión general útil.
 
 ## Módulos disponibles
 ### 🧑‍💼 Pacientes
