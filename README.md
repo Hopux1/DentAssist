@@ -23,7 +23,7 @@
 
 ### 1. Requisitos
 - Visual Studio 2022 o superior
-- .NET 6 SDK
+- .NET 8.0 SDK
 - SQL Server LocalDB (incluido en Visual Studio)
 
 ### 2. Clona el repositorio
@@ -45,15 +45,23 @@ Si lo necesitas cambiar:
 ### 4. Ejecuta la aplicación
 - Abre Visual Studio.
 - Ejecuta `Update-Database` desde **Package Manager Console** para crear la base de datos.
-- Presiona F5 o `Ctrl+F5` para iniciar el proyecto.
+- Presiona F5 para iniciar el proyecto.
 
 ---
 
 ## 👨‍⚕️ Manual de Usuario
 
-### ▶️ Iniciar sesión
-No es necesario iniciar sesión para usar el sistema.
+## Navegación general del sistema
+### 🔹 Inicio (Dashboard)
+Al ingresar, verás un panel resumen con:
+- Total de pacientes registrados
+- Total de odontólogos
+- Cantidad de tratamientos disponibles
+- Turnos agendados
+- Planes de tratamiento activos
+Este panel brinda una visión general útil para el administrador.
 
+## Módulos disponibles
 ### 🧑‍💼 Pacientes
 - Ir a `Pacientes > Crear` para agregar un nuevo paciente.
 - El RUT se valida automáticamente y se formatea con puntos y guion.
@@ -83,21 +91,8 @@ No es necesario iniciar sesión para usar el sistema.
 
 ---
 
-## 🎨 Personalización
-
-### Cambiar logo
-Reemplaza el archivo `wwwroot/logo.png` con el de tu clínica.
-
-### Favicon
-Agrega tu ícono en `wwwroot/favicon.ico` y asegúrate de tenerlo en `_Layout.cshtml`:
-```html
-<link rel="icon" type="image/x-icon" href="~/favicon.ico" />
-```
-
----
-
 ## 👥 Autores
-- 👨‍💻 Desarrollador principal: *[Tu nombre]*
+- 👨‍💻 Desarrolladores: *Adré Piffaut, Jesús Vidal, Oscar Zuñiga*
 
 ---
 
