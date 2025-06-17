@@ -1,0 +1,3 @@
+# Ignorar archivos de base de datos
+*.mdf
+*.ldf
