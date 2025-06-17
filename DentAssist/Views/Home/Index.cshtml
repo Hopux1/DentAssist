@@ -1,0 +1,101 @@
+﻿@model DentAssist.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="mb-4 text-center">Panel de Estadísticas</h1>
+
+<div class="d-flex justify-content-center gap-4 flex-wrap text-white mb-4">
+    <div class="card bg-primary" style="width: 160px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">Pacientes</h5>
+            <p class="card-text display-6">@Model.TotalPacientes</p>
+        </div>
+    </div>
+    <div class="card bg-success" style="width: 160px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">Odontólogos</h5>
+            <p class="card-text display-6">@Model.TotalOdontologos</p>
+        </div>
+    </div>
+    <div class="card bg-warning" style="width: 160px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">Turnos</h5>
+            <p class="card-text display-6">@Model.TotalTurnos</p>
+        </div>
+    </div>
+    <div class="card bg-danger" style="width: 160px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">Tratamientos</h5>
+            <p class="card-text display-6">@Model.TotalTratamientos</p>
+        </div>
+    </div>
+</div>
+
+
+<h3 class="mt-5">Gráfico de tratamientos más aplicados</h3>
+<canvas id="tratamientosChart" height="100"></canvas>
+
+<h3 class="mt-5">Últimos planes creados</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Paciente</th>
+            <th>Odontólogo</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plan in Model.UltimosPlanes)
+        {
+            <tr>
+                <td>@plan.Id</td>
+                <td>@plan.Paciente?.Nombre</td>
+                <td>@plan.Odontologo?.Nombre</td>
+                <td>@plan.Observaciones</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById('tratamientosChart');
+
+            if (!ctx) {
+                console.warn("Canvas no encontrado");
+                return;
+            }
+
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.TratamientosMasUsados.Keys)),
+                    datasets: [{
+                        label: 'Veces aplicado',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.TratamientosMasUsados.Values)),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { precision: 0 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

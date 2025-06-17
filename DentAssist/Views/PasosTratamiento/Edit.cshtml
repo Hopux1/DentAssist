@@ -1,0 +1,55 @@
+﻿@model DentAssist.Models.PasoTratamiento
+
+@{
+    ViewData["Title"] = "Edit";
+    var fechaMinima = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
+}
+
+<h4>Modificar Pasos Tratamiento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="TratamientoId" class="control-label"></label>
+                <select asp-for="TratamientoId" class="form-control" asp-items="ViewBag.TratamientoId"></select>
+                <span asp-validation-for="TratamientoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FechaEstimada" class="control-label"></label>
+                <input asp-for="FechaEstimada" class="form-control" type="datetime-local" min="@fechaMinima" />
+                <span asp-validation-for="FechaEstimada" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado" class="form-control" asp-items="ViewBag.Estado"></select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observaciones" class="control-label"></label>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+    <a asp-controller="PlanesTratamiento" asp-action="Details" asp-route-id="@Model.PlanTratamientoId" class="btn btn-secondary">Volver atrás</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

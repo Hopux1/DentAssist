@@ -1,0 +1,153 @@
+﻿@model DentAssist.Models.PlanTratamiento
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Plan de Tratamiento - PDF</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #333;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #93c0c8;
+            padding-bottom: 10px;
+        }
+
+            .header img {
+                height: 60px;
+                margin-right: 20px;
+            }
+
+            .header h1 {
+                margin: 0;
+                color: #93c0c8;
+            }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f7fafd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+            table th, table td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+            }
+
+            table th {
+                background-color: #d9f2ff;
+            }
+
+        .firma {
+            margin-top: 60px;
+        }
+
+            .firma p {
+                margin-bottom: 4px;
+            }
+
+            .firma .linea {
+                border-top: 1px solid #000;
+                width: 200px;
+                margin-top: 40px;
+            }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="~/images/logo.png" alt="Logo DentAssist" />
+        <h1>Plan de Tratamiento</h1>
+    </div>
+
+    <p><strong>Fecha de emisión:</strong> @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</p>
+
+    <div class="section">
+        <h2>Información del paciente</h2>
+        <p><strong>Nombre:</strong> @Model.Paciente?.Nombre</p>
+        <p><strong>RUT:</strong> @Model.Paciente?.Rut</p>
+        <p><strong>Previsión:</strong> @Model.Paciente?.Prevision</p>
+    </div>
+
+    <div class="section">
+        <h2>Odontólogo tratante</h2>
+        <p><strong>Nombre:</strong> @Model.Odontologo?.Nombre</p>
+        <p><strong>Matrícula:</strong> @Model.Odontologo?.Matricula</p>
+    </div>
+
+    <div class="section">
+        <h2>Observaciones generales</h2>
+        <p>@Model.Observaciones</p>
+    </div>
+
+    <div class="section">
+        <h2>Pasos del tratamiento</h2>
+        @if (Model.Pasos?.Any() == true)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tratamiento</th>
+                        <th>Fecha Estimada</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var paso in Model.Pasos)
+                    {
+                        <tr>
+                            <td>@paso.Tratamiento?.Nombre</td>
+                            <td>@paso.FechaEstimada.ToString("dd/MM/yyyy")</td>
+                            <td>@paso.Estado</td>
+                            <td>@paso.Observaciones</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No hay pasos registrados.</p>
+        }
+    </div>
+
+    <div class="firma">
+        <p>___________________________</p>
+        <p>Firma del Profesional</p>
+    </div>
+
+    <div class="footer">
+        Clínica DentAssist · © 2025 — Sonríe bien, porque donde cabe la risa, cabe la longaniza.
+    </div>
+</body>
+</html>
