@@ -288,3 +288,4 @@ C:\Users\hopu_\source\repos\DentAssist\DentAssist\obj\Debug\net8.0\refint\DentAs
 C:\Users\hopu_\source\repos\DentAssist\DentAssist\obj\Debug\net8.0\DentAssist.pdb
 C:\Users\hopu_\source\repos\DentAssist\DentAssist\obj\Debug\net8.0\DentAssist.genruntimeconfig.cache
 C:\Users\hopu_\source\repos\DentAssist\DentAssist\obj\Debug\net8.0\ref\DentAssist.dll
+C:\Users\hopu_\source\repos\DentAssist\DentAssist\obj\Debug\net8.0\DentAssist.sourcelink.json
